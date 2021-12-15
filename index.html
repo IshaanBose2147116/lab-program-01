@@ -7,7 +7,9 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
     <link rel="icon" href="./assests/logo/logo.ico"/>
     <link rel="stylesheet" href="./styles/index.css"/>
@@ -15,19 +17,112 @@
 </head>
 <body>
     <div class="container">
-        <div class="header-container">
+        <div class="sticky-header" id="sticky-navbar">
+            <img src="./assests/images/logo.png"/>
+            Seal Bay School
+            <div class="navbar-links-container">
+                <ul>
+                    <li><a href="#about-us">About Us</a></li>
+                    <li><a href="#facilities">Facilities</a></li>
+                    <li><a href="#admissions">Admissions</a></li>
+                    <li><a href="#login">Login</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="header-container" id="header">
             <img src="./assests/images/logo.png" class="header-logo"/>
             <h1>Seal Bay School</h1>
             <div class="header-links-container">
                 <ul>
-                    <li><a href="#AboutUs">About Us</a></li>
-                    <li><a href="#Facilities">Facilities</a></li>
-                    <li><a href="#Admissions">Admissions</a></li>
-                    <li><a href="#Login">Login</a></li>
+                    <li><a href="#about-us">About Us</a></li>
+                    <li><a href="#facilities">Facilities</a></li>
+                    <li><a href="#admissions">Admissions</a></li>
+                    <li><a href="#login">Login</a></li>
                 </ul>
             </div>
         </div>
-        <img src="./assests/images/school_photo.jpg" class="school-photo" />
+        <div class="school-photo-container">
+            <img src="./assests/images/school_photo_shaded_cropped.jpg" />
+            <div class="text-over-img">Certified #1 School</div>
+        </div>
+        <div class="about-us-container" id="about-us">
+            <div>
+                <span class="title">About Us</span><br/>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis vulputate mi. Aliquam nibh sapien, laoreet sed auctor quis, sodales eget massa. Fusce finibus interdum tellus vel ultrices. Nullam aliquet sit amet tortor a eleifend. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque eget augue a elit lobortis aliquet. Ut nec justo erat. 
+                <br/><br/>
+                Phasellus vitae nibh ante. Nam fringilla, dolor id ultrices tempus, velit enim pellentesque massa, et efficitur sapien risus sit amet velit. Sed gravida nibh vel purus bibendum, eu vestibulum lectus feugiat. Donec laoreet cursus ligula sed fermentum.
+            </div>
+        </div>
+        <div class="news-events-container">
+            <div class="rounded news-container">
+                <span class="title">News</span>
+                <hr/>
+                <div class="news-events-items">
+                    <span class="title">News 1</span><br/>
+                    <div class="date">16<sup>th</sup> December, 2021</div>
+                </div>
+                <hr/>
+                <div class="news-events-items">
+                    <span class="title">News 2</span><br/>
+                    <div class="date">15<sup>th</sup> December, 2021</div>
+                </div>
+                <hr/>
+                <div class="news-events-items">
+                    <span class="title">News 3</span><br/>
+                    <div class="date">12<sup>th</sup> December, 2021</div>
+                </div>
+                <hr/>
+                <div class="news-events-items">
+                    <span class="title">News 4</span><br/>
+                    <div class="date">2<sup>nd</sup> December, 2021</div>
+                </div>
+                <hr/>
+                <button class="btn-view-all">View All</button>
+            </div>
+            <div class="rounded events-container">
+                <span class="title">Events</span>
+                <hr/>
+                <div class="news-events-items">
+                    <span class="title">Event 1</span><br/>
+                    <div class="date">11<sup>th</sup> December, 2021</div>
+                </div>
+                <hr/>
+                <div class="news-events-items">
+                    <span class="title">Event 2</span><br/>
+                    <div class="date">5<sup>th</sup> December, 2021</div>
+                </div>
+                <hr/>
+                <div class="news-events-items">
+                    <span class="title">Event 3</span><br/>
+                    <div class="date">23<sup>rd</sup> November, 2021</div>
+                </div>
+                <hr/>
+                <div class="news-events-items">
+                    <span class="title">Event 4</span><br/>
+                    <div class="date">8<sup>th</sup> November, 2021</div>
+                </div>
+                <hr/>
+                <button class="btn-view-all">View All</button>
+            </div>
+        </div>
+        <div class="footer-container">
+            <table class="info-table">
+                <tr>
+                    <td><span class="material-icons cst-material-icons">location_on</span></td>
+                    <td>Mount Poinsur, Borivali (west),<br/> Mumbai - 400092,<br/> Maharashtra, India</td>
+                </tr>
+                <tr>
+                    <td><span class="material-icons">phone</span></td>
+                    <td>Tel: +91 804012 9100 / 9600</td>
+                </tr>
+                <tr>
+                    <td><span class="material-icons">email</span></td>
+                    <td>Email: mail@sealbay.com</td>
+                </tr>
+            </table>
+        </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="./scripts/index.js"></script>
 </body>
 </html>

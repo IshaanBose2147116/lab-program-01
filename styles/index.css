@@ -4,6 +4,7 @@ html, body {
     height: 100%;
     background-color: #d7d8d7;
     font-family: 'Nunito Sans', sans-serif;
+    scroll-behavior: smooth;
 }
 
 .container {
@@ -52,9 +53,180 @@ html, body {
     text-decoration: underline;
 }
 
-.school-photo {
+.school-photo-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.school-photo-container > img {
     width: 100%;
     height: auto;
+}
+
+.school-photo-container > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    color: #d7d8d7;
+    font-size: 5em;
+}
+
+.about-us-container {
+    text-align: center;
+    padding: 3em;
+    font-size: 1.2em;
+    display: flex;
+    justify-content: center;
+    padding-top: 5em;
+    padding-bottom: 5em;
+}
+
+.about-us-container > div {
+    width: 66%;
+}
+
+.about-us-container > div > .title {
+    text-transform: uppercase;
+    color: #1f2c46;
+    font-weight: 900;
+    font-size: 3em;
+    font-family: 'Nunito', sans-serif;
+}
+
+.sticky-header {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background-color: #1f2c46;
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+.sticky-header > img {
+    width: 75px;
+    height: 75px;
+    margin-left: 30px;
+}
+
+.navbar-links-container {
+    margin-left: auto;
+}
+
+.navbar-links-container > ul {
+    list-style-type: none;
+    margin-right: 30px;
+}
+
+.navbar-links-container > ul > li {
+    display: inline-block;
+    font-size: 1em;
+    margin: 0.5em;
+}
+
+.navbar-links-container > ul > li > a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar-links-container > ul > li > a:hover {
+    text-decoration: underline;
+}
+
+.news-events-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 5em;
+    padding-bottom: 5em;
+}
+
+.news-events-container > .rounded {
+    border-radius: 5px;
+}
+
+.news-container, .events-container {
+    background-color: rgba(255, 255, 255, 0.219);
+    padding: 10px;
+    width: 35%;
+}
+
+.news-container > .title, .events-container > .title {
+    font-family: 'Nunito', sans-serif;
+    color: #1f2c46;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.news-container > hr, .events-container > hr {
+    border-width: 2px;
+    border-color: #1f2c46;
+}
+
+.news-container {
+    margin-right: 50px;
+}
+
+.news-events-items {
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
+.news-events-items > .title {
+    font-weight: bold;
+    font-size: 1.15em;
+}
+
+.news-events-items > .date {
+    color:rgb(94, 94, 94);
+    padding-top: 10px;
+}
+
+.btn-view-all {
+    border: none;
+    border-radius: 5px;
+    background-color: #1f2c46;
+    color: #d7d8d7;
+    font-size: 1em;
+    padding: 7px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-view-all:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.footer-container {
+    background-color: #0e131f;
+    color: #d7d8d7;
+    padding-top: 4em;
+    padding-bottom: 4em;
+    padding-left: 8em;
+    padding-right: 8em;
+    display: flex;
+}
+
+.cst-material-icons {
+    margin-right: 20px;
+}
+
+.info-table {
+    width: 30%;
+    font-size: 1.1em;
+    border-spacing: 10px;
+}
+
+td {
+    vertical-align: top;
 }
 
 @media screen and (max-width: 767px) {
@@ -80,5 +252,10 @@ html, body {
 
     .header-links-container > ul > li {
         font-size: 1em;
+    }
+
+    .school-photo-container > div {
+        font-size: 2em;
+        width: 70%;
     }
 }

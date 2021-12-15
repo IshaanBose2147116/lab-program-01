@@ -1,0 +1,84 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #d7d8d7;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+}
+
+.header-container {
+    background-color: #1f2c46;
+    color: white;
+    flex: 0 0 15%;
+    display: flex;
+    align-items: center;
+    padding-left: 10em;
+    padding-right: 10em;
+}
+
+.header-logo {
+    width: 125px;
+    height: 125px;
+}
+
+.header-links-container {
+    margin-left: auto;
+}
+
+.header-links-container > ul {
+    list-style-type: none;
+    padding: 1em;
+}
+
+.header-links-container > ul > li {
+    display: inline-block;
+    font-size: 1.25em;
+    margin: 0.5em;
+}
+
+.header-links-container > ul > li > a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header-links-container > ul > li > a:hover {
+    text-decoration: underline;
+}
+
+.school-photo {
+    width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width: 767px) {
+    .header-container {
+        flex-direction: column;
+        padding: 0;
+        flex: 0 0 5%;
+    }
+
+    .header-container > h1 {
+        margin: 0;
+    }
+
+    .header-links-container {
+        flex-grow: 0;
+        flex-direction: row;
+        margin: 0;
+    }
+
+    .header-links-container > ul {
+        padding: 0;
+    }
+
+    .header-links-container > ul > li {
+        font-size: 1em;
+    }
+}

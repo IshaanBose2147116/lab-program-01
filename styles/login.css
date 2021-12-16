@@ -1,0 +1,71 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #d7d8d7;
+    font-family: 'Nunito Sans', sans-serif;
+    scroll-behavior: smooth;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    width: 80px;
+    height: auto;
+    border-radius: 50%;
+    margin-top: 20%;
+    margin-bottom: 20%;
+}
+
+.login-container {
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #1f2c46;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.548);
+}
+
+.login-container > h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 5em;
+}
+
+.login-container > h1:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #203c74;
+}
+
+.login-container > span {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+@media screen and (max-width: 767px) {
+    .container {
+        justify-content: center;
+    }
+    
+    .login-container {
+        width: 95%;
+    }
+
+    .login-container > h1 {
+        font-size: 3em;
+        text-decoration: underline;
+    }
+
+    .login-container > span {
+        font-size: 1.5em;
+    }
+}

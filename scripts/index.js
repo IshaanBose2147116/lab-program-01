@@ -11,9 +11,13 @@ $(document).ready(() => {
         }
     };
 
-    stickyNav();
+    if (!window.matchMedia("(max-width: 767px").matches)
+        stickyNav();
+    else
+        $("#sticky-navbar").hide();
 
     $(window).scroll(() => {
-        stickyNav();
+        if (!window.matchMedia("(max-width: 767px").matches)
+            stickyNav();
     });
 });

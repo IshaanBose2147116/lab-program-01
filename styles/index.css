@@ -187,6 +187,11 @@ html, body {
     padding-top: 10px;
 }
 
+.news-events-items > .title:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .btn-view-all {
     border: none;
     border-radius: 5px;
@@ -257,5 +262,42 @@ td {
     .school-photo-container > div {
         font-size: 2em;
         width: 70%;
+    }
+
+    .about-us-container {
+        font-size: 1em;
+    }
+
+    .about-us-container > div {
+        width: 95%;
+    }
+
+    .about-us-container > div > .title {
+        font-size: 2.5em;
+    }
+
+    .news-events-container {
+        flex-direction: column;
+        padding-top: 0;
+        padding-bottom: 5em;
+        align-items: center;
+    }
+
+    .news-container, .events-container {
+        width: 90%;
+    }
+
+    .news-container {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .footer-container {
+        padding-left: 10%;
+        padding-right: 0;
+    }
+
+    .info-table {
+        width: 90%;
     }
 }

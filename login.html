@@ -18,11 +18,38 @@
 <body>
     <div class="container">
         <a href="./index.html"><img src="./assests/images/logo_bg.png" class="logo" /></a>
-        <div class="login-container">
-            <h1 id="staff-login">Staff Login</h1>
-            <span>OR</span>
-            <h1 id="student-login">Student Login</h1>
+        <div class="login-box-container">
+            <div class="choice-container" id="choice-container">
+                <h1 id="staff-login">Staff Login</h1>
+                <span>OR</span>
+                <h1 id="student-login">Student Login</h1>
+            </div>
+            <div class="login-container" id="login-container">
+                <form action="./admin_dashboard.html" method="PUT">
+                    <h1>Login</h1>
+                    <div>
+                        <span class="placeholder-text" id="emp-id-placeholder">Enter Employee ID</span>
+                        <input type="text" id="emp-id" />
+                    </div>
+                    <div>
+                        <span class="placeholder-text" id="emp-pswd-placeholder">Enter Password</span>
+                        <input type="password" id="emp-pswd" />
+                    </div>
+                    <div>
+                        <span class="emp-type-label">Employee Type:</span>
+                        <select id="emp-type">
+                            <option>Teaching</option>
+                            <option>Admin</option>
+                            <option>Non-Teaching</option>
+                        </select>
+                    </div>
+                    <input type="submit" id="login-btn" value="Login" />
+                </form>
+            </div>
         </div>
     </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="./scripts/login.js"></script>
 </body>
 </html>

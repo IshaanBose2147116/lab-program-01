@@ -4,7 +4,6 @@ html, body {
     height: 100%;
     background-color: #d7d8d7;
     font-family: 'Nunito Sans', sans-serif;
-    scroll-behavior: smooth;
 }
 
 .container {
@@ -23,7 +22,7 @@ html, body {
     margin-bottom: 20%;
 }
 
-.login-container {
+.login-box-container {
     width: 50%;
     height: auto;
     display: flex;
@@ -35,20 +34,111 @@ html, body {
     background-color: rgba(255, 255, 255, 0.548);
 }
 
-.login-container > h1 {
+.choice-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.choice-container > h1 {
     font-family: 'Nunito', sans-serif;
     font-size: 5em;
 }
 
-.login-container > h1:hover {
+.choice-container > h1:hover {
     text-decoration: underline;
     cursor: pointer;
     color: #203c74;
 }
 
-.login-container > span {
+.choice-container > span {
     font-weight: bold;
     font-size: 2em;
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.login-container > form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-container > form > h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 4em;
+}
+
+.login-container > form > div {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.placeholder-text {
+    color: #636363;
+    margin-left: 10px;
+    margin-top: 10px;
+    position: absolute;
+    font-size: 1.25em;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+#emp-id, #emp-pswd {
+    font-size: 1.25em;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+#emp-pswd {
+    margin-bottom: 20px;
+}
+
+.placeholder-text-focus {
+    margin-top: -20px;
+    font-size: 1em;
+    pointer-events: auto;
+    color: #1f2c46;
+}
+
+#login-btn {
+    border: none;
+    background-color: rgb(0, 197, 26);
+    border-radius: 5px;
+    color: white;
+    font-size: 1.25em;
+    padding: 0.5em 1em;
+    margin-bottom: 3em;
+    transition: all 0.2s;
+}
+
+#login-btn:hover {
+    cursor: pointer;
+    background-color: rgb(3, 226, 33);
+}
+
+#login-btn:active {
+    box-shadow: 0 0 8px 3px rgb(0, 119, 16);  
+}
+
+#emp-type {
+    width: 100%;
+    border: none;
+    background-color: white;
+    border-radius: 5px;
+    font-size: 1.15em;
+    padding: 10px;
+    margin-bottom: 30px;
+    margin-top: 5px;
 }
 
 @media screen and (max-width: 767px) {
@@ -56,16 +146,38 @@ html, body {
         justify-content: center;
     }
     
-    .login-container {
+    .login-box-container {
         width: 95%;
     }
 
-    .login-container > h1 {
+    .choice-container > h1 {
         font-size: 3em;
         text-decoration: underline;
     }
 
-    .login-container > span {
+    .choice-container > span {
         font-size: 1.5em;
+    }
+
+    .login-container > form > div {
+        width: 100%;
+    }
+
+    #emp-id, #emp-pswd {
+        width: 90%;
+        margin-left: 2.5%;
+    }
+
+    #emp-type {
+        width: 95%;
+        margin-left: 2.5%;
+    }
+
+    .emp-type-label {
+        margin-left: 2.5%;
+    }
+
+    .placeholder-text {
+        margin-left: 15px;
     }
 }

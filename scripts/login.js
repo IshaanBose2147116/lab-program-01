@@ -22,10 +22,19 @@ $(document).ready(() => {
 
     $("#emp-pswd").focus((e) => {
         $("#emp-pswd-placeholder").addClass("placeholder-text-focus");
-    })
+    });
 
     $("#emp-pswd").blur((e) => {
         if ($("#emp-pswd").val().length === 0)
         $("#emp-pswd-placeholder").removeClass("placeholder-text-focus");
-    })
+    });
 });
+
+function redirect() {
+    const empType = $("#emp-type :selected").val();
+
+    if (empType === "admin")
+        window.location.replace("http://localhost:5500/admin_dashboard.html");
+    else 
+        window.location.replace("http://localhost:5500/driver_dashboard.html");
+}

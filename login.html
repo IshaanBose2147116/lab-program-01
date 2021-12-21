@@ -25,7 +25,7 @@
                 <h1 id="student-login">Student Login</h1>
             </div>
             <div class="login-container" id="login-container">
-                <form action="./admin_dashboard.html" method="PUT">
+                <form id="login-form" method="POST" onsubmit="event.preventDefault(); redirect();">
                     <h1>Login</h1>
                     <div>
                         <span class="placeholder-text" id="emp-id-placeholder">Enter Employee ID</span>
@@ -38,9 +38,9 @@
                     <div>
                         <span class="emp-type-label">Employee Type:</span>
                         <select id="emp-type">
-                            <option>Teaching</option>
-                            <option>Admin</option>
-                            <option>Non-Teaching</option>
+                            <option value="teaching">Teaching</option>
+                            <option value="admin">Admin</option>
+                            <option value="non-teachingn">Non-Teaching</option>
                         </select>
                     </div>
                     <input type="submit" id="login-btn" value="Login" />

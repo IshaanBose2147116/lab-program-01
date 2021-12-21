@@ -32,9 +32,14 @@ $(document).ready(() => {
 
 function redirect() {
     const empType = $("#emp-type :selected").val();
+    var url = window.location.href;
 
-    if (empType === "admin")
-        window.location.replace("http://localhost:5500/admin_dashboard.html");
-    else 
-        window.location.replace("http://localhost:5500/driver_dashboard.html");
+    if (empType === "admin") {
+        url = url.replace("/login.html", "/admin_dashboard.html");
+        window.location.replace(url);
+    }
+    else {
+        url = url.replace("/login.html", "/driver_dashboard.html");
+        window.location.replace(url);
+    }
 }

@@ -1,0 +1,49 @@
+.actions {
+    margin-left: auto;
+}
+
+.actions > a {
+    color: #d7d8d7;
+    font-size: 1.25em;
+    margin-right: 1.25em;
+    text-decoration: none;
+}
+
+.actions > a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.table-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.dropoffs-table, tr, td, th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 0.5em;
+    width: 50%;
+    text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+    .header-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .actions {
+        padding: 1em 0;
+    }
+
+    .welcome-text {
+        font-size: 1.5em !important;
+    }
+
+    .dropoffs-table {
+        width: 80%;
+    }
+}

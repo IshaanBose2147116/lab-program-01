@@ -1,35 +1,3 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background-color: #d7d8d7;
-    font-family: 'Nunito Sans', sans-serif;
-}
-
-.container {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    flex-direction: column;
-}
-
-.header-container {
-    background-color: #1f2c46;
-    display: flex;
-    align-items: center;
-}
-
-.header-container > img {
-    width: 80px;
-    height: auto;
-    margin-left: 1em;
-}
-
-.header-container > .welcome-text {
-    color: #d7d8d7;
-    font-size: 1.25em;
-}
-
 #logout {
     margin-left: auto;
     color: #d7d8d7;
@@ -41,45 +9,6 @@ html, body {
 #logout:hover {
     cursor: pointer;
     text-decoration: underline;
-}
-
-.user-details-container {
-    width: 30%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.database-details-container {
-    width: 70%;
-}
-
-.user-details-container > div {
-    width: 80%;
-}
-
-.content-container {
-    width: 100%;
-    display: flex;
-}
-
-.emp-img-container {
-    width: 148px !important;
-    height: 180px;
-    border: 1px solid black;
-    margin-top: 3.5em;
-    margin-bottom: 2em;
-}
-
-.emp-img-container > img {
-    width: inherit;
-    height: inherit;
-}
-
-.user-details > span {
-    margin-bottom: 1em;
-    margin-right: 0.8em;
-    font-size: 1.1em;
 }
 
 .db-disp {
@@ -100,25 +29,9 @@ html, body {
 }
 
 @media screen and (max-width: 767px) {
-    .user-details-container {
-        width: 100%;
-    }
-
-    .header-container > img {
-        margin-left: 0;
-    }
-
     #logout {
         margin-right: 0.8em;
         text-decoration: underline;
-    }
-
-    .content-container {
-        flex-direction: column;
-    }
-
-    .database-details-container {
-        width: 100%;
     }
 
     .db-disp {

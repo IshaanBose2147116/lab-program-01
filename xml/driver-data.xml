@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="./driver-data.xsl" type="text/xsl"?>
+<drivers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="./driver-data.xsd">
+    <driver emp-id="300150">
+        <name>Santosh Roy</name>
+        <dob>1992-04-19</dob>
+        <vehicle-assigned>MH 11 K 8900</vehicle-assigned>
+        <license-type>Bus</license-type>
+        <route>
+            <route-start>Route start address</route-start>
+            <route-end>Route end address</route-end>
+            <sched-start>06:20 am</sched-start>
+            <sched-end>07:55 am</sched-end>
+            <drop-offs>
+                <drop-off>
+                    <address>Drop off address 2</address>
+                    <no-drop-offs>2</no-drop-offs>
+                </drop-off>
+                <drop-off>
+                    <address>Drop off address 1</address>
+                    <no-drop-offs>1</no-drop-offs>
+                </drop-off>
+                <drop-off>
+                    <address>Drop off address 3</address>
+                    <no-drop-offs>5</no-drop-offs>
+                </drop-off>
+                <drop-off>
+                    <address>Drop off address 5</address>
+                    <no-drop-offs>3</no-drop-offs>
+                </drop-off>
+                <drop-off>
+                    <address>Drop off address 4</address>
+                    <no-drop-offs>1</no-drop-offs>
+                </drop-off>
+            </drop-offs>
+        </route>
+    </driver>
+</drivers>

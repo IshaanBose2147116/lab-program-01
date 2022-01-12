@@ -210,6 +210,17 @@ html, body {
     cursor: pointer;
 }
 
+.video-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5em;
+}
+
+.video-container > iframe {
+    width: 50%;
+    height: 25em;
+}
+
 .footer-container {
     background-color: #0e131f;
     color: #d7d8d7;
@@ -299,5 +310,10 @@ td {
 
     .info-table {
         width: 90%;
+    }
+
+    .video-container > iframe {
+        width: 90%;
+        height: 15em;
     }
 }

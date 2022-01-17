@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 #logout {
     margin-left: auto;
     color: #d7d8d7;
@@ -11,11 +15,32 @@
     text-decoration: underline;
 }
 
+.content-container {
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-details-container {
+    width: 100%;
+    padding: 1em 0em;
+}
+
+.user-details-container > div {
+    width: 100%;
+}
+
+.database-details-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .db-disp {
     width: 90%;
-    border: 1px solid black;
     border-collapse: collapse;
     margin-top: 2em;
+    margin-bottom: 2em;
+    margin-left: 2em;
 }
 
 .db-disp tr th {
@@ -26,6 +51,64 @@
 .db-disp tr td {
     border: 1px solid black;
     padding: 10px;
+}
+
+.db-disp tr th:last-child {
+    opacity: 0;
+    border: none;
+}
+
+.db-disp tr td:last-child {
+    border: none;
+}
+
+.clickable-icon {
+    margin-left: 0.5em;
+}
+
+.clickable-icon:hover {
+    cursor: pointer;
+}
+
+.clickable-icon.edit:hover {
+    color: rgb(0, 163, 14);
+}
+
+.clickable-icon.delete:hover {
+    color: red;
+}
+
+#pop-up {
+    display: flex;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffffe7;
+    padding: 2em;
+    border-radius: 5px;
+}
+
+#pop-up h1 {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+#pop-up div {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#pop-up div input {
+    margin-left: auto;
+}
+
+#pop-up button {
+    margin-top: 1em;
 }
 
 @media screen and (max-width: 767px) {

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<employees>
+    <employee emp-id="100050">
+        <name>Joey Weaver</name>
+        <gender>Male</gender>
+        <dob>1966-05-23</dob>
+        <join-date>2014-08-12</join-date>
+        <salary>120000.00</salary>
+        <designation>Principal</designation>
+    </employee>
+    <employee emp-id="200201">
+        <name>Anaya Dua</name>
+        <gender>Female</gender>
+        <dob>1988-03-13</dob>
+        <join-date>2018-01-29</join-date>
+        <salary>12500.00</salary>
+        <designation>Teacher</designation>
+    </employee>
+    <employee emp-id="200202">
+        <name>Abhishek Parikh</name>
+        <gender>Male</gender>
+        <dob>1988-03-13</dob>
+        <join-date>2018-01-29</join-date>
+        <salary>12600.00</salary>
+        <designation>Teacher</designation>
+    </employee>
+    <employee emp-id="100051">
+        <name>Gita Halder</name>
+        <gender>Female</gender>
+        <dob>1972-07-02</dob>
+        <join-date>2014-08-20</join-date>
+        <salary>95000.00</salary>
+        <designation>Vice Principal</designation>
+    </employee>
+    <employee emp-id="100100">
+        <name>Bianca Hersey</name>
+        <gender>Female</gender>
+        <dob>1996-03-13</dob>
+        <join-date>2019-11-12</join-date>
+        <salary>111500.00</salary>
+        <designation>IT Head</designation>
+    </employee>
+    <employee emp-id="200203">
+        <name>Suman Kunda</name>
+        <gender>Female</gender>
+        <dob>1990-06-09</dob>
+        <join-date>2011-09-12</join-date>
+        <salary>13500.00</salary>
+        <designation>Teacher</designation>
+    </employee>
+    <employee emp-id="200204">
+        <name>Anupam Rout</name>
+        <gender>Male</gender>
+        <dob>1999-04-30</dob>
+        <join-date>2020-11-12</join-date>
+        <salary>12500.00</salary>
+        <designation>Teacher</designation>
+    </employee>
+    <employee emp-id="200205">
+        <name>Puja Soni</name>
+        <gender>Female</gender>
+        <dob>1980-03-13</dob>
+        <join-date>2014-09-09</join-date>
+        <salary>12500.00</salary>
+        <designation>Teacher</designation>
+    </employee>
+    <employee emp-id="200206">
+        <name>Hrithik Aggarwal</name>
+        <gender>Male</gender>
+        <dob>1979-04-26</dob>
+        <join-date>2016-02-20</join-date>
+        <salary>12500.00</salary>
+        <designation>Teacher</designation>
+    </employee>
+    <employee emp-id="200207">
+        <name>Abhishek Parikh</name>
+        <gender>Male</gender>
+        <dob>1988-03-13</dob>
+        <join-date>2018-01-29</join-date>
+        <salary>12500.00</salary>
+        <designation>Teacher</designation>
+    </employee>
+    <employee emp-id="200208">
+        <name>Abhishek Parikh</name>
+        <gender>Male</gender>
+        <dob>1988-03-13</dob>
+        <join-date>2018-01-29</join-date>
+        <salary>12500.00</salary>
+        <designation>Teacher</designation>
+    </employee>
+    <employee emp-id="200209">
+        <name>Abhishek Parikh</name>
+        <gender>Male</gender>
+        <dob>1988-03-13</dob>
+        <join-date>2018-01-29</join-date>
+        <salary>12500.00</salary>
+        <designation>Teacher</designation>
+    </employee>
+</employees>

@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
 <sb:schema xmlns:sb="http://www.w3.org/2001/XMLSchema">
 <sb:element name="drivers" type="root" />
+
 <sb:complexType name="root">
     <sb:sequence>
         <sb:element name="driver" type="driverElement" />
     </sb:sequence>
 </sb:complexType>
+
 <sb:complexType name="driverElement">
     <sb:sequence>
         <sb:element name="name" type="sb:string" />
@@ -24,6 +26,7 @@
     </sb:sequence>
     <sb:attribute name="emp-id" type="sb:integer" />
 </sb:complexType>
+
 <sb:complexType name="routeElement">
     <sb:sequence>
         <sb:element name="route-start" type="sb:string" />
@@ -33,11 +36,13 @@
         <sb:element name="drop-offs" type="dropOffsElement" />
     </sb:sequence>
 </sb:complexType>
+
 <sb:complexType name="dropOffsElement">
     <sb:sequence>
         <sb:element name="drop-off" type="dropOffElement" maxOccurs="unbounded" />
     </sb:sequence>
 </sb:complexType>
+
 <sb:complexType name="dropOffElement">
     <sb:sequence>
         <sb:element name="address" type="sb:string" />

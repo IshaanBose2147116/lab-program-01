@@ -25,61 +25,52 @@
         </div>
         <div class="content-container">
             <div class="user-details-container">
-                <div class="emp-img-container">
-                    <img src="assests/images/blank-profile-picture.png" />
-                </div>
                 <div class="user-details">
                     <span>Name:</span><span id="name">John Doe</span><br/>
-                    <span>Employee ID:</span><span id="empid">20134142442</span><br/>
+                    <span>Employee ID:</span><span id="empid">100001</span><br/>
                 </div>
             </div>
+            <div>
+                <button onclick="showCreatePopup()">Add Record</button>
+            </div>
             <div class="database-details-container">
-                <table class="db-disp">
-                    <tr>
-                        <th>Column 1</th>
-                        <th>Column 2</th>
-                        <th>Column 3</th>
-                        <th>Column 4</th>
-                    </tr>
-                    <tr>
-                        <td>Value 11</td>
-                        <td>Value 12</td>
-                        <td>Value 13</td>
-                        <td>Value 14</td>
-                    </tr>
-                    <tr>
-                        <td>Value 21</td>
-                        <td>Value 22</td>
-                        <td>Value 23</td>
-                        <td>Value 24</td>
-                    </tr>
-                    <tr>
-                        <td>Value 31</td>
-                        <td>Value 32</td>
-                        <td>Value 33</td>
-                        <td>Value 34</td>
-                    </tr>
-                    <tr>
-                        <td>Value 41</td>
-                        <td>Value 42</td>
-                        <td>Value 43</td>
-                        <td>Value 44</td>
-                    </tr>
-                    <tr>
-                        <td>Value 51</td>
-                        <td>Value 52</td>
-                        <td>Value 53</td>
-                        <td>Value 54</td>
-                    </tr>
-                    <tr>
-                        <td>Value 61</td>
-                        <td>Value 62</td>
-                        <td>Value 63</td>
-                        <td>Value 64</td>
-                    </tr>
-                </table>
+                <table class="db-disp" id="db-disp"></table>
             </div>
         </div>
+        <div id="pop-up">
+            <h1 id="pop-up-title"></h1>
+            <div>
+                <span>Emp ID:</span>
+                <input type="text" id="emp-id" />
+            </div>
+            <div>
+                <span>Name:</span>
+                <input type="text" id="emp-name" />
+            </div>
+            <div>
+                <span>Gender:</span>
+                <input type="text" id="emp-gender" />
+            </div>
+            <div>
+                <span>DoB:</span>
+                <input type="date" id="emp-dob" />
+            </div>
+            <div>
+                <span>Join Date:</span>
+                <input type="date" id="emp-join-date" />
+            </div>
+            <div>
+                <span>Salary:</span>
+                <input type="text" id="emp-salary" />
+            </div>
+            <div>
+                <span>Designation:</span>
+                <input type="text" id="emp-designation" />
+            </div>
+            <button id="save-changes">Save Changes</button>
+        </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="scripts/admin_dashboard.js" />
 </body>
 </html>

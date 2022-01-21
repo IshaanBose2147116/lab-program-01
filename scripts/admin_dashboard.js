@@ -111,7 +111,6 @@ function showEditPopup(nodeNum) {
     }
 
     $("#save-changes").click(() => {
-        alert(nodeNum);
         employee.setAttribute("emp-id", $("#emp-id").val());
 
         for (let i = 0; i < employeeDetails.length; i++) {

@@ -29,6 +29,21 @@
     width: 100%;
 }
 
+.button-container {
+    width: 100%;
+}
+
+.button-container button {
+    border: none;
+    border-radius: 5px;
+    background: black;
+    color: white;
+    padding: 0.5em 1em;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: bold;
+    margin-left: 6%;
+}
+
 .database-details-container {
     width: 100%;
     display: flex;
@@ -103,12 +118,28 @@
     align-items: center;
 }
 
+#pop-up div span {
+    margin-right: 0.5em;
+}
+
 #pop-up div input {
     margin-left: auto;
 }
 
 #pop-up button {
     margin-top: 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(0, 216, 0);
+    color: white;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    font-weight: bold;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+#pop-up button:hover {
+    cursor: pointer;
 }
 
 @media screen and (max-width: 767px) {

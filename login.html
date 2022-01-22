@@ -28,12 +28,14 @@
                 <form id="login-form" method="POST" onsubmit="event.preventDefault(); redirect();">
                     <h1>Login</h1>
                     <div>
-                        <span class="placeholder-text" id="emp-id-placeholder">Enter Employee ID</span>
+                        <span class="placeholder-text" id="emp-id-placeholder">Enter Employee ID or Email</span>
                         <input type="text" id="emp-id" />
+                        <div id="emp-id-error" class="input-error-text"></div>
                     </div>
                     <div>
                         <span class="placeholder-text" id="emp-pswd-placeholder">Enter Password</span>
                         <input type="password" id="emp-pswd" />
+                        <div id="password-error" class="input-error-text"></div>
                     </div>
                     <div>
                         <span class="emp-type-label">Employee Type:</span>

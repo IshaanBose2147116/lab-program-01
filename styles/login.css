@@ -79,6 +79,7 @@ html, body {
     display: flex;
     flex-direction: column;
     width: 50%;
+    margin-bottom: 1em;
 }
 
 .placeholder-text {
@@ -96,11 +97,6 @@ html, body {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    margin-bottom: 30px;
-}
-
-#emp-pswd {
-    margin-bottom: 20px;
 }
 
 .placeholder-text-focus {
@@ -108,6 +104,13 @@ html, body {
     font-size: 1em;
     pointer-events: auto;
     color: #1f2c46;
+}
+
+.input-error-text {
+    color: red;
+    margin-top: 0.2em;
+    margin-bottom: 1em;
+    margin-left: 0.2em;
 }
 
 #login-btn {

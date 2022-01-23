@@ -24,12 +24,7 @@
             <a href="./login.html" id="logout">Logout</a>
         </div>
         <div class="content-container">
-            <div class="user-details-container">
-                <!-- <div class="user-details">
-                    <span>Name:</span><span id="name">John Doe</span><br/>
-                    <span>Employee ID:</span><span id="empid">100001</span><br/>
-                </div> -->
-            </div>
+            <div class="user-details-container"></div>
             <div class="button-container">
                 <button onclick="showCreatePopup()">Add Record</button>
             </div>
@@ -41,31 +36,52 @@
             <h1 id="pop-up-title"></h1>
             <div>
                 <span>Emp ID:</span>
-                <input type="text" id="emp-id" />
+                <div>
+                    <input type="text" id="emp-id" />
+                    <span id="emp-id-error">ERROR</span>
+                </div>
             </div>
             <div>
                 <span>Name:</span>
-                <input type="text" id="emp-name" />
+                <div>
+                    <input type="text" id="emp-name" />
+                    <span id="emp-name-error">error</span>
+                </div>
             </div>
             <div>
                 <span>Gender:</span>
-                <input type="text" id="emp-gender" />
+                <div>
+                    <input type="text" id="emp-gender" />
+                    <span id="emp-gender-error">error</span>
+                </div>
             </div>
             <div>
                 <span>DoB:</span>
-                <input type="date" id="emp-dob" />
+                <div>
+                    <input type="date" id="emp-dob" />
+                    <span id="emp-dob-error">error</span>
+                </div>
             </div>
             <div>
                 <span>Join Date:</span>
-                <input type="date" id="emp-join-date" />
+                <div>
+                    <input type="date" id="emp-join-date" />
+                    <span id="emp-join-date-error">error</span>
+                </div>
             </div>
             <div>
                 <span>Salary:</span>
-                <input type="text" id="emp-salary" />
+                <div>
+                    <input type="text" id="emp-salary" />
+                    <span id="emp-salary-error">error</span>
+                </div>
             </div>
             <div>
                 <span>Designation:</span>
-                <input type="text" id="emp-designation" />
+                <div>
+                    <input type="text" id="emp-designation" />
+                    <span id="emp-designation-error">error</span>
+                </div>
             </div>
             <button id="save-changes">Save Changes</button>
         </div>

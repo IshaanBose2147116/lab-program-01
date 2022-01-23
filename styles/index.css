@@ -245,6 +245,10 @@ td {
     vertical-align: top;
 }
 
+.spam-sms-table {
+    border-spacing: 10px;
+}
+
 @media screen and (max-width: 767px) {
     .header-container {
         flex-direction: column;

@@ -105,6 +105,7 @@
     background-color: #ffffffe7;
     padding: 2em;
     border-radius: 5px;
+    width: 25%;
 }
 
 #pop-up h1 {
@@ -112,7 +113,7 @@
 }
 
 #pop-up div {
-    margin-top: 1em;
+    margin-top: 0.5em;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -122,8 +123,17 @@
     margin-right: 0.5em;
 }
 
-#pop-up div input {
+#pop-up div div {
     margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#pop-up div div span {
+    color: red;
+    font-size: 0.6em;
+    opacity: 0;
 }
 
 #pop-up button {

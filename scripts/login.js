@@ -45,7 +45,9 @@ $(document).ready(() => {
 });
 
 function redirect() {
-    if (validateEmailID()) {
+    const validEmail = validateEmailID(), validPassword = validatePassword();
+
+    if (validEmail && validPassword) {
         const empType = $("#emp-type :selected").val();
         var url = window.location.href;
 
@@ -69,23 +71,19 @@ function validateEmailID() {
     else if (isNaN(value)) { // if user has entered email
         const pattern = /^\w+\.\w+@sealbay\.in$/;
 
-        if (pattern.test(value))
-        {
+        if (pattern.test(value)) {
             $("#emp-id-error").text("");
             return true;
         }
-        else
-        {
+        else {
             $("#emp-id-error").text("Invalid email.");
         }
     } 
     else {
-        if (value.length != 6)
-        {
+        if (value.length < 6) {
             $("#emp-id-error").text("Employee ID must consist of 6 numbers.");
-        }    
-        else
-        {
+        }
+        else {
             $("#emp-id-error").text("");
             return true;
         }
@@ -102,7 +100,7 @@ function validatePassword() {
     }
     else {
         var errors = "";
-        console.log(value.length);
+        
         if (value.length < 8 || value.length > 30)
             errors += "Password cannot be less than 8 or more than 30 characters.";
         else {
@@ -125,5 +123,10 @@ function validatePassword() {
         }
         
         document.getElementById("password-error").innerHTML = errors;
+        
+        if (errors.length === 0)
+            return true;
     }
+
+    return false;
 }

@@ -19,7 +19,7 @@ html, body {
     align-items: center;
 }
 
-.header-container > img {
+.header-container a img {
     width: 80px;
     height: auto;
     margin-left: 1em;

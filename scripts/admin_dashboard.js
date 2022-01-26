@@ -311,6 +311,10 @@ $(document).ready(() => {
             $("save-changes").off("click");
         }
     });
+
+    document.getElementById("logout").onclick = (e) => {
+        sessionStorage.clear();
+    };
 });
 
 function showError(id, message) {

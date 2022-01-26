@@ -1,4 +1,15 @@
 $(document).ready(() => {
+    if (sessionStorage.getItem("redirectTo") !== null) {
+        var url = window.location.href;
+
+        if (sessionStorage.getItem("redirectTo") === "admin")
+            url = url.replace("/login.html", "/admin_dashboard.html");
+        else
+            url = url.replace("/login.html", "/driver_dashboard.html");
+        
+        window.location.replace(url);
+    }
+
     $("#login-container").hide();
 
     $("#staff-login").click((e) => { 
@@ -52,13 +63,17 @@ function redirect() {
         var url = window.location.href;
 
         if (empType === "admin") {
+            sessionStorage.setItem("redirectTo", "admin");
+            sessionStorage.setItem("username", "Admin");
             url = url.replace("/login.html", "/admin_dashboard.html");
-            window.location.replace(url);
         }
         else {
+            sessionStorage.setItem("redirectTo", "driver");
+            sessionStorage.setItem("username", "Santosh Roy");
             url = url.replace("/login.html", "/driver_dashboard.html");
-            window.location.replace(url);
         }
+
+        window.location.replace(url);
     }
 }
 
@@ -80,7 +95,7 @@ function validateEmailID() {
         }
     } 
     else {
-        if (value.length < 6) {
+        if (value.length !== 6) {
             $("#emp-id-error").text("Employee ID must consist of 6 numbers.");
         }
         else {

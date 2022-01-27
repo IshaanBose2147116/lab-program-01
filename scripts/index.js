@@ -2,8 +2,8 @@ const Colors = ["#d7d8d7", "#c3b8ff", "#ffb8fa", "#b8d3ff", "#ffb8b8", "#ffdcb8"
 const Images = ["./assests/images/school_photo_shaded_cropped.jpg", "./assests/images/school_photo2_shaded_cropped.jpg"]
 
 $(document).ready(() => {
-    increasePageLoad();
-    
+    checkIfCookiesAllowed();
+
     var headerOffset = document.getElementById("header").offsetHeight;
 
     var stickyNav = () => {
@@ -35,6 +35,16 @@ $(document).ready(() => {
             $("#spam-error").text("");
         }
     };
+
+    document.getElementById("disable-cookies").onclick = () => {
+        setCookie("cookiesAllowed", false, 1);
+        $("#sticky-cookie").hide();
+    };
+
+    document.getElementById("allow-cookies").onclick = () => {
+        setCookie("cookiesAllowed", true, 1);
+        $("#sticky-cookie").hide();
+    };
 });
 
 function checkPhoneNum(e) {
@@ -47,6 +57,32 @@ function checkPhoneNum(e) {
             if (keyCode !== 8)
                 e.preventDefault();
         }
+    }
+}
+
+function checkIfCookiesAllowed() {
+    var allowed = getCookie("cookiesAllowed");
+
+    if (allowed !== "") {
+        $("#sticky-cookie").hide();
+
+        if (allowed === "true") {
+            increasePageLoad();
+    
+            const anchorTags = document.getElementsByTagName("a");
+            for (let i = 0; i < anchorTags.length; i++) {
+                anchorTags[i].onclick = countLinkClicks;
+            }
+        }
+        else {
+            if (getCookie("pageLoaded") !== "")
+                deleteCookie("pageLoaded");
+            if (getCookie("linkClicks") !== "")
+                deleteCookie("linkClicks");
+        }
+    }
+    else {
+        $("#sticky-cookie").show();
     }
 }
 
@@ -81,10 +117,21 @@ function changeColourAndImage() {
     document.getElementById("school-photo").src = image;
 }
 
+function countLinkClicks() {
+    let count = parseInt(getCookie("linkClicks"));
+
+    if (count === 0 || isNaN(count)) {
+        setCookie("linkClicks", 1, 365);
+    }
+    else {
+        setCookie("linkClicks", count + 1, 365);
+    }
+}
+
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    let expires = "expires="+ d.toUTCString();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
@@ -106,4 +153,8 @@ function getCookie(cname) {
     }
 
     return "";
-} 
+}
+
+function deleteCookie(cname) {
+    document.cookie = cname + "=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/";
+}

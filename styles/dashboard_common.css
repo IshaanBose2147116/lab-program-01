@@ -35,16 +35,7 @@ html, body {
     display: flex;
 }
 
-.user-details-container {
-    width: 30%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
 
-.user-details-container > div {
-    width: 80%;
-}
 
 .emp-img-container {
     width: 148px !important;
@@ -76,10 +67,6 @@ html, body {
 
     .content-container {
         flex-direction: column;
-    }
-
-    .user-details-container {
-        width: 100%;
     }
 
     .database-details-container {

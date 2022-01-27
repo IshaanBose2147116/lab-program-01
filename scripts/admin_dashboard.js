@@ -1,5 +1,27 @@
+const Records = {
+    added: document.getElementById("added-records"),
+    edited: document.getElementById("edited-records"),
+    deleted: document.getElementById("deleted-records")
+};
 const XMlFileLocation = "../xml/employee-data.xml";
 var XMLFile = null;
+
+function loadStats() {
+    if (localStorage.addedRecords)
+        Records.added.innerText = localStorage.addedRecords;
+    else
+        Records.added.innerText = "0";
+    
+    if (localStorage.editedRecords)
+        Records.edited.innerText = localStorage.editedRecords;
+    else
+        Records.edited.innerText = "0";
+    
+    if (localStorage.deletedRecords)
+        Records.deleted.innerText = localStorage.deletedRecords;
+    else
+        Records.deleted.innerText = "0";
+}
 
 function loadXML() {
     var xhttp = new XMLHttpRequest();
@@ -58,6 +80,16 @@ function displayXML() {
 function deleteNode(nodeNum) {
     var employee = XMLFile.getElementsByTagName("employee")[nodeNum];
     employee.parentNode.removeChild(employee);
+
+    if (localStorage.deletedRecords) {
+        localStorage.deletedRecords = Number(localStorage.deletedRecords) + 1;
+    }
+    else {
+        localStorage.deletedRecords = 1;
+    }
+
+    Records.deleted.innerText = localStorage.deletedRecords;
+
     displayXML();
 }
 
@@ -145,6 +177,15 @@ function showEditPopup(nodeNum) {
                     }
                 }
             }
+
+            if (localStorage.editedRecords) {
+                localStorage.editedRecords = Number(localStorage.editedRecords) + 1;
+            }
+            else {
+                localStorage.editedRecords = 1;
+            }
+
+            Records.edited.innerText = localStorage.editedRecords;
             
             $("#pop-up").fadeOut(() => {
                 $("#save-changes").off("click");
@@ -196,6 +237,15 @@ function showCreatePopup() {
 
             XMLFile.documentElement.appendChild(newEmployee);
 
+            if (localStorage.addedRecords) {
+                localStorage.addedRecords = Number(localStorage.addedRecords) + 1;
+            }
+            else {
+                localStorage.addedRecords = 1;
+            }
+
+            Records.added.innerText = localStorage.addedRecords;
+
             $("#pop-up").fadeOut(() => {
                 $("#save-changes").off("click");
                 displayXML();
@@ -206,6 +256,7 @@ function showCreatePopup() {
 
 $(document).ready(() => {
     loadXML();
+    loadStats();
     
     $("#pop-up").hide();
     

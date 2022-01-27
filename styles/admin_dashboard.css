@@ -22,11 +22,11 @@
 
 .user-details-container {
     width: 100%;
-    padding: 1em 0em;
+    padding: 1em 6em;
 }
 
-.user-details-container > div {
-    width: 100%;
+.record-counts {
+    margin-right: 2em;;
 }
 
 .button-container {

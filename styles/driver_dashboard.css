@@ -14,6 +14,17 @@
     text-decoration: underline;
 }
 
+.user-details-container {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.user-details-container > div {
+    width: 80%;
+}
+
 .table-container {
     display: flex;
     width: 100%;
@@ -37,6 +48,10 @@
 
     .actions {
         padding: 1em 0;
+    }
+
+    .user-details-container {
+        width: 100%;
     }
 
     .welcome-text {

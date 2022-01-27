@@ -115,6 +115,38 @@ html, body {
     margin-left: 30px;
 }
 
+.sticky-cookie {
+    position: fixed;
+    bottom: 0;
+    z-index: 2000;
+    width: 100%;
+    background-color: #ffe44d;
+    padding: 2em;
+    display: flex;
+}
+
+.sticky-cookie #disable-cookies {
+    margin-left: auto;
+    padding: 0.5em 1em;
+    background-color: rgb(255, 0, 0);
+    border: none;
+}
+
+.sticky-cookie #allow-cookies {
+    margin-right: 5em;
+    margin-left: 1em;
+    padding: 0.5em 1em;
+    background-color: rgb(9, 255, 0);
+    border: none;
+    transition: all 0.5s;
+}
+
+.sticky-cookie #allow-cookies:hover {
+    cursor: pointer;
+    transform: scale(1.25, 1.25);
+    margin-left:2em;
+}
+
 .navbar-links-container {
     margin-left: auto;
 }

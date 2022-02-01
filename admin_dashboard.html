@@ -17,7 +17,7 @@
     <title>Admin Dashboard</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container" ng-app="app" ng-controller="dataController">
         <div class="header-container">
             <a href="./index.html"><img id="logo" src="./assests/images/logo.png" /></a>
             <span class="welcome-text">Welcome Admin!</span>
@@ -25,72 +25,48 @@
         </div>
         <div class="content-container">
             <div class="user-details-container">
-                Added Records: <span id="added-records" class="record-counts">0</span>
-                Edited Records: <span id="edited-records" class="record-counts">0</span>
-                Deleted Records: <span id="deleted-records" class="record-counts">0</span>
+                Added Records: <span id="added-records" class="record-counts"> {{ addedRecords | number }} </span>
+                Edited Records: <span id="edited-records" class="record-counts"> {{ editedRecords | number }} </span>
+                Deleted Records: <span id="deleted-records" class="record-counts"> {{ deletedRecords | number }} </span>
             </div>
             <div class="button-container">
-                <button onclick="showCreatePopup()">Add Record</button>
-            </div>
-            <div class="database-details-container">
-                <table class="db-disp" id="db-disp"></table>
-            </div>
-        </div>
-        <div id="pop-up">
-            <h1 id="pop-up-title"></h1>
-            <div>
-                <span>Emp ID:</span>
+                <button>Add Record</button>
                 <div>
-                    <input type="text" id="emp-id" />
-                    <span id="emp-id-error">ERROR</span>
+                    Gender format: 
+                    <input type="radio" id="short" name="format" value="short" />
+                    <label for="short">Short Form</label>
+                    <input type="radio" id="full" name="format" value="full" checked />
+                    <label for="full">Full Form</label>
                 </div>
             </div>
-            <div>
-                <span>Name:</span>
-                <div>
-                    <input type="text" id="emp-name" />
-                    <span id="emp-name-error">error</span>
-                </div>
+            <div class="database-details-container"> 
+                <table class="db-disp" id="db-disp">
+                    <tr>
+                        <th>Emp ID</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>DoB</th>
+                        <th>Join Date</th>
+                        <th>Salary</th>
+                        <th>Designation</th>
+                    </tr>
+                    <tr ng-repeat="emp in employees | orderBy: 'empID'">
+                        <td> {{ emp.empID | custFormat }} </td>
+                        <td> {{ emp.name | nameFormat }} </td>
+                        <td> {{ emp.gender | uppercase | limitTo : genderLimit }} </td>
+                        <td> {{ emp.dob | date : "dd-MMM-y" }} </td>
+                        <td> {{ emp.joinDate | date : "dd-MMM-y" }} </td>
+                        <td> {{ emp.salary | currency : "₹ " }} </td>
+                        <td> {{ emp.designation }} </td>
+                    </tr>
+                </table>
             </div>
-            <div>
-                <span>Gender:</span>
-                <div>
-                    <input type="text" id="emp-gender" />
-                    <span id="emp-gender-error">error</span>
-                </div>
-            </div>
-            <div>
-                <span>DoB:</span>
-                <div>
-                    <input type="date" id="emp-dob" />
-                    <span id="emp-dob-error">error</span>
-                </div>
-            </div>
-            <div>
-                <span>Join Date:</span>
-                <div>
-                    <input type="date" id="emp-join-date" />
-                    <span id="emp-join-date-error">error</span>
-                </div>
-            </div>
-            <div>
-                <span>Salary:</span>
-                <div>
-                    <input type="text" id="emp-salary" />
-                    <span id="emp-salary-error">error</span>
-                </div>
-            </div>
-            <div>
-                <span>Designation:</span>
-                <div>
-                    <input type="text" id="emp-designation" />
-                    <span id="emp-designation-error">error</span>
-                </div>
-            </div>
-            <button id="save-changes">Save Changes</button>
+            <input type="button" value="View JSON Data" id="json" style="margin-bottom: 2em;" />
+            <pre>{{ employees | json }}</pre>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="scripts/admin_dashboard.js"></script>
 </body>
 </html>

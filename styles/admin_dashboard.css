@@ -31,6 +31,9 @@
 
 .button-container {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 6%;
 }
 
 .button-container button {
@@ -41,7 +44,8 @@
     padding: 0.5em 1em;
     font-family: 'Nunito Sans', sans-serif;
     font-weight: bold;
-    margin-left: 6%;
+    width: 10%;
+    margin-bottom: 1em;
 }
 
 .database-details-container {
@@ -68,88 +72,10 @@
     padding: 10px;
 }
 
-.db-disp tr th:last-child {
-    opacity: 0;
-    border: none;
-}
-
-.db-disp tr td:last-child {
-    border: none;
-}
-
-.clickable-icon {
-    margin-left: 0.5em;
-}
-
-.clickable-icon:hover {
-    cursor: pointer;
-}
-
-.clickable-icon.edit:hover {
-    color: rgb(0, 163, 14);
-}
-
-.clickable-icon.delete:hover {
-    color: red;
-}
-
-#pop-up {
-    display: flex;
-    text-align: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    flex-direction: column;
-    justify-content: center;
-    background-color: #ffffffe7;
-    padding: 2em;
-    border-radius: 5px;
-    width: 25%;
-}
-
-#pop-up h1 {
-    font-family: 'Nunito Sans', sans-serif;
-}
-
-#pop-up div {
-    margin-top: 0.5em;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-#pop-up div span {
-    margin-right: 0.5em;
-}
-
-#pop-up div div {
-    margin-left: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-#pop-up div div span {
-    color: red;
-    font-size: 0.6em;
-    opacity: 0;
-}
-
-#pop-up button {
-    margin-top: 1em;
-    border: none;
-    border-radius: 5px;
-    background-color: rgb(0, 216, 0);
-    color: white;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    font-weight: bold;
-    font-family: 'Nunito Sans', sans-serif;
-}
-
-#pop-up button:hover {
-    cursor: pointer;
+pre {
+    background-color: white;
+    border: 1px solid black;
+    padding: 0.5em;
 }
 
 @media screen and (max-width: 767px) {

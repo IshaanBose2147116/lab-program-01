@@ -1,17 +1,10 @@
-# Lab Program 7
+# Lab Program 8
 
-Write a JavaScript to implement cookies with the following condition
+Create JSON file based on your domain with minimum six entities and keep your JSON file either in GitHub(Create separate repository) or AWS or any other cloud platforms. You should access JSON file remotely using Angular JS and apply the following filter operations
 
-
-- Add at least three fields in cookies and two fields in session  and local storage
-- Set the default webpage background color and image using cookies
-- Set the Expiry date for minimum two cookies and also perform the following operations
-- Add cookie
-- Read Cookie
-- Remove Cookie
+1. Apply minimum 6 filter attributes in your JSON file
+2. Create minimum 2 custom filters
+3. You should have search option for all your JSON fields
 
 Check:
-* https://ishaanbose2147116.github.io/lab-program-01/
-* https://ishaanbose2147116.github.io/lab-program-01/login.html
 * https://ishaanbose2147116.github.io/lab-program-01/admin_dashboard.html
-* https://ishaanbose2147116.github.io/lab-program-01/driver_dashboard.html

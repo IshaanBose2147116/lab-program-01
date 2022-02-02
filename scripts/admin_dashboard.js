@@ -1,3 +1,4 @@
+var filterBy = "empid";
 document.getElementsByTagName("pre")[0].style.display = "none";
 
 const button = document.getElementById("json");
@@ -56,7 +57,6 @@ app.controller("dataController", ($scope, $http) => {
     $http.get("https://gist.githubusercontent.com/IshaanBose2147116/b75c1226ac9cb263882fcd3a69551ece/raw/62ad9060e9b770edd8d1fbe1067b1c2229359b6a/employee_data.json")
     .then((response) => {
         $scope.employees = response.data;
-        console.log($scope.employees);
         
         if (localStorage.addedRecords)
             $scope.addedRecords = localStorage.addedRecords;

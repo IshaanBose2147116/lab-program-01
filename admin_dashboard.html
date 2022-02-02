@@ -38,6 +38,15 @@
                     <input type="radio" id="full" name="format" value="full" checked />
                     <label for="full">Full Form</label>
                 </div>
+                <div style="margin-top: 1em;">
+                    Search by EmpID: <input type="text" id="search" ng-model="search.empID" style="margin-left: 0.2em;" />
+                    Search by Name: <input type="text" id="search" ng-model="search.name" style="margin-left: 0.2em;" />
+                    Search by Gender: <input type="text" id="search" ng-model="search.gender" style="margin-left: 0.2em;" />
+                    Search by DoB: <input type="text" id="search" ng-model="search.dob" style="margin-left: 0.2em;" /><br/>
+                    Search by Join Date: <input type="text" id="search" ng-model="search.joinDate" style="margin-left: 0.2em;" />
+                    Search by Salary: <input type="text" id="search" ng-model="search.salary" style="margin-left: 0.2em;" />
+                    Search by Designation: <input type="text" id="search" ng-model="search.designation" style="margin-left: 0.2em;" />
+                </div>
             </div>
             <div class="database-details-container"> 
                 <table class="db-disp" id="db-disp">
@@ -50,7 +59,7 @@
                         <th>Salary</th>
                         <th>Designation</th>
                     </tr>
-                    <tr ng-repeat="emp in employees | orderBy: 'empID'">
+                    <tr ng-repeat="emp in employees | orderBy: 'empID' | filter: search">
                         <td> {{ emp.empID | custFormat }} </td>
                         <td> {{ emp.name | nameFormat }} </td>
                         <td> {{ emp.gender | uppercase | limitTo : genderLimit }} </td>

@@ -1,6 +1,66 @@
 const Colors = ["#d7d8d7", "#c3b8ff", "#ffb8fa", "#b8d3ff", "#ffb8b8", "#ffdcb8", "#fffeb8", "#dfffb8", "#b8ffc3"];
 const Images = ["./assests/images/school_photo_shaded_cropped.jpg", "./assests/images/school_photo2_shaded_cropped.jpg"]
 
+const app = angular.module('app', ['ngRoute']);
+app.config(($routeProvider) => {
+    $routeProvider
+    .when("/", {
+        templateUrl: '/templates/main.html'
+    })
+    .when("/about-us", {
+        templateUrl: '/templates/about-us.html',
+        controller : "aboutUsCtrl"
+    })
+    .when("/staff", {
+        templateUrl: '/templates/staff.html',
+        controller : "staffCtrl"
+    })
+    .when("/staff-search", {
+        templateUrl: '/templates/staff-search.html',
+        controller : "staffSearchCtrl"
+    });
+});
+app.controller("aboutUsCtrl", function ($scope) {
+    $scope.title = "About Us";
+});
+app.controller("staffCtrl", function ($scope, $http) {
+    $scope.title = "Staff";
+
+    $http.get("https://gist.githubusercontent.com/IshaanBose2147116/b75c1226ac9cb263882fcd3a69551ece/raw/62ad9060e9b770edd8d1fbe1067b1c2229359b6a/employee_data.json")
+    .then((response) => {
+        $scope.employees = response.data;
+    });
+});
+app.controller("staffSearchCtrl", function ($scope, $http) {
+    $scope.title = "Staff Search";
+
+    $http.get("https://gist.githubusercontent.com/IshaanBose2147116/b75c1226ac9cb263882fcd3a69551ece/raw/62ad9060e9b770edd8d1fbe1067b1c2229359b6a/employee_data.json")
+    .then((response) => {
+        $scope.employees = response.data;
+        var teachers = [];
+
+        for (let i = 0; i < $scope.employees.length; i++) {
+            if ($scope.employees[i].designation === "Teacher") {
+                teachers.push($scope.employees[i]);
+            }
+        }
+
+        $scope.employees = teachers;
+    });
+});
+app.filter("nameFormat", () => {
+    return (x) => {
+        var names = x.split(" ");
+        var name = "";
+
+        for (let i = 0; i < names.length; i++) {
+            name += names[i].substring(0, 1).toUpperCase() + names[i].substring(1, names[i].length) + " ";
+        }
+
+        return name.trim();
+    };
+});
+
 $(document).ready(() => {
     checkIfCookiesAllowed();
 

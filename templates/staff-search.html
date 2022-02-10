@@ -1,0 +1,19 @@
+<div class="content-container">
+    <div>
+        <span class="title">{{ title }}</span><br/>
+        <table class="staff-table">
+            <tr>
+                <th>Name</th>
+                <th>Designation</th>
+            </tr>
+            <tr>
+                <td><input type="text" id="search" ng-model="search.name" /></td>
+                <td><input type="text" id="search" ng-model="search.designation" /></td>
+            </tr>
+            <tr ng-repeat="emp in employees | filter: search">
+                <td> {{ emp.name | nameFormat }} </td>
+                <td> {{ emp.designation }} </td>
+            </tr>
+        </table>
+    </div>
+</div>

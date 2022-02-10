@@ -1,17 +1,12 @@
-# Lab Program 7
+# Lab Program 9
 
-Write a JavaScript to implement cookies with the following condition
+Create a single page application using routing with the following condition
 
-
-- Add at least three fields in cookies and two fields in session  and local storage
-- Set the default webpage background color and image using cookies
-- Set the Expiry date for minimum two cookies and also perform the following operations
-- Add cookie
-- Read Cookie
-- Remove Cookie
+1. Configure minimum 3 html files using routeProvider and specify the controller for each templateUrl
+The controller should have the following conditions
+2. Pass the message using the first controller
+3. Manipulate the JSON file from github repository using second controller
+4. Search the particular JSON content from github repository using third controller
 
 Check:
 * https://ishaanbose2147116.github.io/lab-program-01/
-* https://ishaanbose2147116.github.io/lab-program-01/login.html
-* https://ishaanbose2147116.github.io/lab-program-01/admin_dashboard.html
-* https://ishaanbose2147116.github.io/lab-program-01/driver_dashboard.html

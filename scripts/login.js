@@ -65,12 +65,12 @@ function redirect() {
         if (empType === "admin") {
             sessionStorage.setItem("redirectTo", "admin");
             sessionStorage.setItem("username", "Admin");
-            url = url.replace("/login.html", "/admin_dashboard.html");
+            url = url.replace("/login", "/admin-dashboard");
         }
         else {
             sessionStorage.setItem("redirectTo", "driver");
             sessionStorage.setItem("username", "Santosh Roy");
-            url = url.replace("/login.html", "/driver_dashboard.html");
+            url = url.replace("/login", "/dashboard/driver");
         }
 
         window.location.replace(url);

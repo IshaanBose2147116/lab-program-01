@@ -1,12 +1,14 @@
-# Lab Program 9
+# Lab Program 10
 
-Create a single page application using routing with the following condition
+Create a Local Host Server using Express JS and Perform the following operations
+ 
+- Store Your JSON file in Local Host (Implement FS module in order to read the JSON file)
+- Perform read and write operation on JSON in the server side
+- Implement Routing feature using NodeJS
+- Manipulate the server response in the client side
 
-1. Configure minimum 3 html files using routeProvider and specify the controller for each templateUrl
-The controller should have the following conditions
-2. Pass the message using the first controller
-3. Manipulate the JSON file from github repository using second controller
-4. Search the particular JSON content from github repository using third controller
+To start server, go to "server" directory and use `npm start`
 
 Check:
 * https://ishaanbose2147116.github.io/lab-program-01/
+* https://ishaanbose2147116.github.io/lab-program-01/admin_dashboard.html

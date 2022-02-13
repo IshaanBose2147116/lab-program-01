@@ -1,17 +1,14 @@
-# Lab Program 7
+# Lab Program 10
 
-Write a JavaScript to implement cookies with the following condition
+Create a Local Host Server using Express JS and Perform the following operations
+ 
+- Store Your JSON file in Local Host (Implement FS module in order to read the JSON file)
+- Perform read and write operation on JSON in the server side
+- Implement Routing feature using NodeJS
+- Manipulate the server response in the client side
 
-
-- Add at least three fields in cookies and two fields in session  and local storage
-- Set the default webpage background color and image using cookies
-- Set the Expiry date for minimum two cookies and also perform the following operations
-- Add cookie
-- Read Cookie
-- Remove Cookie
+To start server, go to "server" directory and use `npm start`
 
 Check:
 * https://ishaanbose2147116.github.io/lab-program-01/
-* https://ishaanbose2147116.github.io/lab-program-01/login.html
 * https://ishaanbose2147116.github.io/lab-program-01/admin_dashboard.html
-* https://ishaanbose2147116.github.io/lab-program-01/driver_dashboard.html

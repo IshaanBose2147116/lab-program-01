@@ -3,8 +3,8 @@ const Records = {
     edited: document.getElementById("edited-records"),
     deleted: document.getElementById("deleted-records")
 };
-const XMlFileLocation = "../xml/employee-data.xml";
-var XMLFile = null;
+var JSONURL = getURL() + "employee-data";
+var JSONData = [];
 
 function loadStats() {
     if (localStorage.addedRecords)
@@ -23,23 +23,23 @@ function loadStats() {
         Records.deleted.innerText = "0";
 }
 
-function loadXML() {
+function loadJSON() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-            XMLFile = xhttp.responseXML;
-            displayXML();
+            JSONData = JSON.parse(xhttp.responseText);
+            console.log(JSONData);
+            displayJSON();
         }
-    }
+    };
 
-    xhttp.open("GET", XMlFileLocation, true);
+    xhttp.open("GET", JSONURL, true);
     xhttp.send();
 }
 
-function displayXML() {
+function displayJSON() {
     document.getElementById("db-disp").innerHTML = "";
 
-    var employees = XMLFile.getElementsByTagName("employee");
     var table = `
         <tr>
         <th>EmpID</th>
@@ -52,24 +52,19 @@ function displayXML() {
         <th></th>
         </tr>`;
     
-    for (let i = 0; i < employees.length; i++)
-    {
-        var empID = employees[i].getAttribute("emp-id");
-        table += "<tr id='tr-" + empID + "'><td>" + empID + "</td>";
-        var children = employees[i].childNodes;
-        
-        for (let j = 0; j < children.length; j++)
-        {
-            if (children[j].nodeType == 1)
-            {
-                table += "<td>" + children[j].childNodes[0].nodeValue + "</td>";
-            }
-        }
+    for (let i = 0; i < JSONData.length; i++) {
+        table += "<tr id='tr-" + JSONData[i].empID + "'><td>" + JSONData[i].empID + "</td>"
+            + "<td>" + JSONData[i].name + "</td>" 
+            + "<td>" + JSONData[i].gender + "</td>"
+            + "<td>" + JSONData[i].dob + "</td>"
+            + "<td>" + JSONData[i].joinDate + "</td>"
+            + "<td>" + JSONData[i].salary + "</td>"
+            + "<td>" + JSONData[i].designation + "</td>";
         
         table += `<td>
-        <span class="material-icons clickable-icon edit" onClick="showEditPopup(` + i + `)">edit</span>
-        <span class="material-icons clickable-icon delete" onClick="deleteNode(` + i + `)">delete</span>
-        </td>`;
+            <span class="material-icons clickable-icon edit" onClick="showEditPopup(${i})">edit</span>
+            <span class="material-icons clickable-icon delete" onClick="deleteNode(${i})">delete</span>
+            </td>`;
         table += "</tr>";
     }
 
@@ -78,132 +73,90 @@ function displayXML() {
 }
 
 function deleteNode(nodeNum) {
-    var employee = XMLFile.getElementsByTagName("employee")[nodeNum];
-    employee.parentNode.removeChild(employee);
+    fetch(getURL() + `delete-record/${nodeNum}`, {
+        method: "DELETE"
+    }).then(response => {
+        if (response.status === 200) {
+            JSONData.splice(nodeNum, 1);
 
-    if (localStorage.deletedRecords) {
-        localStorage.deletedRecords = Number(localStorage.deletedRecords) + 1;
-    }
-    else {
-        localStorage.deletedRecords = 1;
-    }
+            if (localStorage.deletedRecords) {
+                localStorage.deletedRecords = Number(localStorage.deletedRecords) + 1;
+            }
+            else {
+                localStorage.deletedRecords = 1;
+            }
 
-    Records.deleted.innerText = localStorage.deletedRecords;
+            Records.deleted.innerText = localStorage.deletedRecords;
 
-    displayXML();
+            displayJSON();
+        }
+    });
 }
 
 function showEditPopup(nodeNum) {
-    $("#pop-up-title").text("Edit Record");
+    document.getElementById("pop-up-title").innerText = "Edit Record";
     hideAllErrors();
 
     $("#pop-up").fadeIn(() => {
         $("#pop-up").css("display", "flex");
     });
 
-    const employee = XMLFile.getElementsByTagName("employee")[nodeNum];
-    const employeeDetails = employee.childNodes;
-    const empID = employee.getAttribute("emp-id");
-    $("#emp-id").val(empID);
-    
-    for (let i = 0; i < employeeDetails.length; i++) {
-        if (employeeDetails[i].nodeType == 1) {
-            var val = employeeDetails[i].childNodes[0].nodeValue;
+    const employee = JSONData[nodeNum];
 
-            switch (employeeDetails[i].nodeName) {
-                case "name":
-                    $("#emp-name").val(val);
-                    break;
-
-                case "gender":
-                    $("#emp-gender").val(val);
-                    break;
-                
-                case "dob":
-                    $("#emp-dob").val(val);
-                    break;
-                
-                case "join-date":
-                    $("#emp-join-date").val(val);
-                    break;
-                
-                case "salary":
-                    $("#emp-salary").val(val);
-                    break;
-                
-                case "designation":
-                    $("#emp-designation").val(val);
-                    break;
-
-                default:
-                    break;
-            }
-        }
-    }
+    document.getElementById("emp-id").value = employee.empID;
+    document.getElementById("emp-name").value = employee.name;
+    document.getElementById("emp-gender").value = employee.gender;
+    document.getElementById("emp-dob").value = employee.dob;
+    document.getElementById("emp-join-date").value = employee.joinDate;
+    document.getElementById("emp-salary").value = employee.salary;
+    document.getElementById("emp-designation").value = employee.designation;
 
     $("#save-changes").click(() => {
         if (checkAllValidFields()) {
-            employee.setAttribute("emp-id", $("#emp-id").val());
-    
-            for (let i = 0; i < employeeDetails.length; i++) {
-                if (employeeDetails[i].nodeType == 1) {
-                    switch (employeeDetails[i].nodeName) {
-                        case "name":
-                            employeeDetails[i].childNodes[0].nodeValue = $("#emp-name").val();
-                            break;
-        
-                        case "gender":
-                            employeeDetails[i].childNodes[0].nodeValue = $("#emp-gender").val();
-                            break;
-                        
-                        case "dob":
-                            employeeDetails[i].childNodes[0].nodeValue = $("#emp-dob").val();
-                            break;
-                        
-                        case "join-date":
-                            employeeDetails[i].childNodes[0].nodeValue = $("#emp-join-date").val();
-                            break;
-                        
-                        case "salary":
-                            employeeDetails[i].childNodes[0].nodeValue = $("#emp-salary").val();
-                            break;
-                        
-                        case "designation":
-                            employeeDetails[i].childNodes[0].nodeValue = $("#emp-designation").val();
-                            break;
-        
-                        default:
-                            break;
+            JSONData[nodeNum].empID = parseInt(document.getElementById("emp-id").value);
+            JSONData[nodeNum].name = document.getElementById("emp-name").value;
+            JSONData[nodeNum].gender = document.getElementById("emp-gender").value;
+            JSONData[nodeNum].dob = document.getElementById("emp-dob").value;
+            JSONData[nodeNum].joinDate = document.getElementById("emp-join-date").value;
+            JSONData[nodeNum].salary = document.getElementById("emp-salary").value;
+            JSONData[nodeNum].designation = document.getElementById("emp-designation").value;
+            console.log(JSON.stringify(JSONData[nodeNum]));
+
+            fetch(getURL() + `update-record/${nodeNum}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(JSONData[nodeNum])
+            }).then(response => {
+                if (response.status === 200) {
+                    if (localStorage.editedRecords) {
+                        localStorage.editedRecords = Number(localStorage.editedRecords) + 1;
                     }
+                    else {
+                        localStorage.editedRecords = 1;
+                    }
+        
+                    Records.edited.innerText = localStorage.editedRecords;
+                    
+                    $("#pop-up").fadeOut(() => {
+                        $("#save-changes").off("click");
+                        displayJSON();
+                    });
                 }
-            }
-
-            if (localStorage.editedRecords) {
-                localStorage.editedRecords = Number(localStorage.editedRecords) + 1;
-            }
-            else {
-                localStorage.editedRecords = 1;
-            }
-
-            Records.edited.innerText = localStorage.editedRecords;
-            
-            $("#pop-up").fadeOut(() => {
-                $("#save-changes").off("click");
-                displayXML();
             });
         }
     });
 }
 
 function showCreatePopup() {
-    $("#emp-id").val("");
-    $("#emp-name").val("");
-    $("#emp-gender").val("");
-    $("#emp-dob").val("");
-    $("#emp-join-date").val("");
-    $("#emp-salary").val("");
-    $("#emp-designation").val("");
-    $("#pop-up-title").text("Create Record");
+    document.getElementById("emp-id").value = "";
+    document.getElementById("emp-name").value = "";
+    document.getElementById("emp-gender").value = "";
+    document.getElementById("emp-dob").value = "";
+    document.getElementById("emp-join-date").value = "";
+    document.getElementById("emp-salary").value = "";
+    document.getElementById("emp-designation").value = "";
+
+    document.getElementById("pop-up-title").innerText = "Create Record";
     hideAllErrors();
 
     $("#pop-up").fadeIn(() => {
@@ -212,51 +165,46 @@ function showCreatePopup() {
 
     $("#save-changes").click(() => {
         if (checkAllValidFields()) {
-            const newEmployee = XMLFile.createElement("employee");
-            newEmployee.setAttribute("emp-id", $("#emp-id").val());
+            var newEmployee = {};
             
-            const nameElement = XMLFile.createElement("name");
-            nameElement.appendChild(XMLFile.createTextNode($("#emp-name").val()));
-            const genderELement = XMLFile.createElement("gender");
-            genderELement.appendChild(XMLFile.createTextNode($("#emp-gender").val()));
-            const dobElement = XMLFile.createElement("dob");
-            dobElement.appendChild(XMLFile.createTextNode($("#emp-dob").val()));
-            const joinDateElement = XMLFile.createElement("join-date");
-            joinDateElement.appendChild(XMLFile.createTextNode($("#emp-join-date").val()));
-            const salaryElement = XMLFile.createElement("salary");
-            salaryElement.appendChild(XMLFile.createTextNode($("#emp-salary").val()));
-            const designationElement = XMLFile.createElement("designation");
-            designationElement.appendChild(XMLFile.createTextNode($("#emp-designation").val()));
+            newEmployee.empID = parseInt(document.getElementById("emp-id").value);
+            newEmployee.name = document.getElementById("emp-name").value;
+            newEmployee.gender = document.getElementById("emp-gender").value;
+            newEmployee.dob = document.getElementById("emp-dob").value;
+            newEmployee.joinDate = document.getElementById("emp-join-date").value;
+            newEmployee.salary = document.getElementById("emp-salary").value;
+            newEmployee.designation = document.getElementById("emp-designation").value;
 
-            newEmployee.appendChild(nameElement);
-            newEmployee.appendChild(genderELement);
-            newEmployee.appendChild(dobElement);
-            newEmployee.appendChild(joinDateElement);
-            newEmployee.appendChild(salaryElement);
-            newEmployee.appendChild(designationElement);
+            fetch(getURL() + "add-record", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newEmployee)
+            }).then(response => {
+                if (response.status === 200) {
+                    JSONData.push(newEmployee);
 
-            XMLFile.documentElement.appendChild(newEmployee);
+                    if (localStorage.addedRecords) {
+                        localStorage.addedRecords = Number(localStorage.addedRecords) + 1;
+                    }
+                    else {
+                        localStorage.addedRecords = 1;
+                    }
 
-            if (localStorage.addedRecords) {
-                localStorage.addedRecords = Number(localStorage.addedRecords) + 1;
-            }
-            else {
-                localStorage.addedRecords = 1;
-            }
+                    Records.added.innerText = localStorage.addedRecords;
 
-            Records.added.innerText = localStorage.addedRecords;
-
-            $("#pop-up").fadeOut(() => {
-                $("#save-changes").off("click");
-                displayXML();
+                    $("#pop-up").fadeOut(() => {
+                        $("#save-changes").off("click");
+                        displayJSON();
+                    });
+                }
             });
         }
     });
 }
 
 $(document).ready(() => {
-    loadXML();
     loadStats();
+    loadJSON();
     
     $("#pop-up").hide();
     
@@ -359,7 +307,7 @@ $(document).ready(() => {
         if (!container.is(e.target) && container.has(e.target).length == 0)
         {
             container.fadeOut();
-            $("save-changes").off("click");
+            $("#save-changes").off("click");
         }
     });
 
@@ -484,4 +432,8 @@ function checkAllValidFields() {
     return (
         validID && validName && validGender && validSalary && validDOB && validJoinDate && validDesignation
     );
+}
+
+function getURL() {
+    return window.location.href.substring(0, window.location.href.indexOf("admin-dashboard"));
 }

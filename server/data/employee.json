@@ -1,0 +1,119 @@
+[
+    {
+        "empID": 100050,
+        "name": "Joey Weaver",
+        "gender": "Male",
+        "dob": "1966-05-23",
+        "joinDate": "2014-08-12",
+        "salary": "120000.00",
+        "designation": "Principal"
+    },
+    {
+        "empID": 200201,
+        "name": "Anaya Dua",
+        "gender": "Female",
+        "dob": "1988-03-13",
+        "joinDate": "2018-01-29",
+        "salary": "12500.00",
+        "designation": "Teacher"
+    },
+    {
+        "empID": 200202,
+        "name": "Abhishek Parikh",
+        "gender": "Male",
+        "dob": "1988-03-13",
+        "joinDate": "2018-01-29",
+        "salary": "12600.00",
+        "designation": "Teacher"
+    },
+    {
+        "empID": 100051,
+        "name": "Gita Halder",
+        "gender": "Female",
+        "dob": "1972-07-02",
+        "joinDate": "2014-08-20",
+        "salary": "95000.00",
+        "designation": "Vice Principal"
+    },
+    {
+        "empID": 100100,
+        "name": "Bianca Hersey",
+        "gender": "Female",
+        "dob": "1996-03-13",
+        "joinDate": "2019-11-12",
+        "salary": "111500.00",
+        "designation": "IT Head"
+    },
+    {
+        "empID": 200203,
+        "name": "Suman Kunda",
+        "gender": "Female",
+        "dob": "1990-06-09",
+        "joinDate": "2011-09-12",
+        "salary": "13500.00",
+        "designation": "Teacher"
+    },
+    {
+        "empID": 200204,
+        "name": "Anupam Rout",
+        "gender": "Male",
+        "dob": "1999-04-30",
+        "joinDate": "2020-11-12",
+        "salary": "12500.00",
+        "designation": "Teacher"
+    },
+    {
+        "empID": 200205,
+        "name": "Puja Soni",
+        "gender": "Female",
+        "dob": "1980-03-13",
+        "joinDate": "2014-09-09",
+        "salary": "12500.00",
+        "designation": "Teacher"
+    },
+    {
+        "empID": 200206,
+        "name": "Hrithik Aggarwal",
+        "gender": "Male",
+        "dob": "1979-04-26",
+        "joinDate": "2016-02-20",
+        "salary": "12500.00",
+        "designation": "Teacher"
+    },
+    {
+        "empID": 200207,
+        "name": "Abhishek Parikh",
+        "gender": "Male",
+        "dob": "1988-03-13",
+        "joinDate": "2018-01-29",
+        "salary": "12500.00",
+        "designation": "Teacher"
+    },
+    {
+        "empID": 200208,
+        "name": "Anand Patel",
+        "gender": "Male",
+        "dob": "1988-03-13",
+        "joinDate": "2018-01-29",
+        "salary": "32500.00",
+        "designation": "Some Guy"
+    },
+    {
+        "empID": 412931,
+        "name": "Ishaan Bose",
+        "gender": "Male",
+        "dob": "2000-04-28",
+        "joinDate": "2022-02-26",
+        "salary": "23000.00",
+        "designation": "System Admin"
+    },
+    {
+        "empID": 100000,
+        "name": "Jon Doe",
+        "gender": "NB",
+        "dob": "1984-11-07",
+        "joinDate": "2016-03-16",
+        "salary": "20000.00",
+        "designation": "Teacher"
+    }
+]

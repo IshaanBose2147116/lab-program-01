@@ -1,14 +1,27 @@
-$(document).ready(() => {
-    if (sessionStorage.getItem("redirectTo") !== null) {
-        var url = window.location.href;
+const EmailMap = {
+    "santosh.roy@sealbay.in": 300150,
+    "parth.dubey@sealbay.in": 300151,
+    "krishna.nazareth@sealbay.in": 300152,
+    "manas.gokhale@sealbay.in": 300153,
+    "rajiv.singh@sealbay.in": 300154,
+    "akshay.dubey@sealbay.in": 300155,
+    "anupam.thaman@sealbay.in": 300156,
+    "surya.dubey@sealbay.in": 300157,
+    "mahendra.jha@sealbay.in": 300158,
+    "vipul.nair@sealbay.in": 300159
+}
 
-        if (sessionStorage.getItem("redirectTo") === "admin")
-            url = url.replace("/login.html", "/admin_dashboard.html");
-        else
-            url = url.replace("/login.html", "/driver_dashboard.html");
+$(document).ready(() => {
+    // if (sessionStorage.getItem("redirectTo") !== null) {
+    //     var url = window.location.href;
+
+    //     if (sessionStorage.getItem("redirectTo") === "admin")
+    //         url = url.replace("/login", "/admin-dashboard");
+    //     else
+    //         url = url.replace("/login", "/driver-dashboard");
         
-        window.location.replace(url);
-    }
+    //     window.location.replace(url);
+    // }
 
     $("#login-container").hide();
 
@@ -70,7 +83,15 @@ function redirect() {
         else {
             sessionStorage.setItem("redirectTo", "driver");
             sessionStorage.setItem("username", "Santosh Roy");
-            url = url.replace("/login", "/dashboard/driver");
+
+            var empid = $("#emp-id").val();
+
+            if (isNaN(empid)) {
+                empid = EmailMap[empid];
+            }
+
+            console.log(empid);
+            url = url.replace("/login", `/driver-dashboard?empid=${ empid }`);
         }
 
         window.location.replace(url);

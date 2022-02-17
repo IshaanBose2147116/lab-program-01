@@ -27,14 +27,32 @@
                 <a id="logout" href="/login">Logout</a>
             </div>
         </div>
-        <iframe src='./xml/driver-data.xml' title="driver data" style="border: none; height: 100%; width: 100%;"></iframe>
+        <div class="content-container">
+            <div class="user-details-container">
+                <div class="emp-img-container">
+                    <img src="../assests/images/blank-profile-picture.png" />
+                </div>
+                <div class="user-details">
+                    <span>Employee ID:</span><span id="empid"></span><br/>
+                    <span>Currently Assigned:</span><span id="vehicle-id"></span>
+                </div>
+            </div>
+            <div class="database-details-container" style="padding: 3em 1em;">
+                <b>Route Start: </b><span id="route-start"></span><br/>
+                <b>Route End: </b><span id="route-end"></span><br/><br/>
+                <b>Scheduled Start Time: </b><span id="sched-start"></span><br/>
+                <b>Scheduled End Time: </b><span id="sched-end"></span>
+                <div class="table-container">
+                    <table class="dropoffs-table" id="dropoffs-table">
+                        <tr>
+                            <th>Drop Off Address</th>
+                            <th>No. of Drop Offs</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-    <script>
-        document.getElementById("logout").onclick = () => {
-            sessionStorage.clear();
-        };
-
-        document.getElementById("welcome-text").innerText = "Welcome " + sessionStorage.getItem("username") + "!";
-    </script>
+    <script src="./scripts/driver_dashboard.js"></script>
 </body>
 </html>

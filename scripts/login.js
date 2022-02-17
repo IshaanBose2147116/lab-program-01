@@ -82,7 +82,6 @@ function redirect() {
         }
         else {
             sessionStorage.setItem("redirectTo", "driver");
-            sessionStorage.setItem("username", "Santosh Roy");
 
             var empid = $("#emp-id").val();
 

@@ -31,6 +31,8 @@
 
 .button-container {
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .button-container button {
@@ -42,6 +44,18 @@
     font-family: 'Nunito Sans', sans-serif;
     font-weight: bold;
     margin-left: 6%;
+}
+
+.button-container #refresh-icon {
+    margin-left: 1em;
+}
+
+.button-container #refresh-icon:hover {
+    cursor: pointer;
+}
+
+.button-container #refresh-icon:active {
+    color: rgb(0, 75, 105);
 }
 
 .database-details-container {

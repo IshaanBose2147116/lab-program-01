@@ -31,9 +31,32 @@
             </div>
             <div class="button-container">
                 <button onclick="showCreatePopup()">Add Record</button>
+                <span class="material-icons" id="refresh-icon">refresh</span>
             </div>
             <div class="database-details-container">
-                <table class="db-disp" id="db-disp"></table>
+                <table class="db-disp" id="db-disp">
+                    <tr>
+                        <th>EmpID</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>DoB</th>
+                        <th>Join Date</th>
+                        <th>Salary</th>
+                        <th>Designation</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="search-empid" class="search" /></td>
+                        <td><input type="text" id="search-name" class="search" /></td>
+                        <td><input type="text" id="search-gender" class="search" /></td>
+                        <td><input type="text" id="search-dob" class="search" /></td>
+                        <td><input type="text" id="search-join-date" class="search" /></td>
+                        <td><input type="text" id="search-salary" class="search" /></td>
+                        <td><input type="text" id="search-designation" class="search" /></td>
+                        <td></td>
+                    </tr>
+                    <tbody id="disp-data"></tbody>
+                </table>
             </div>
         </div>
         <div id="pop-up">

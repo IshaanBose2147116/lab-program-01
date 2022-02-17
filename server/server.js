@@ -3,8 +3,6 @@ const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
-const multer = require('multer');
-const upload = multer();
 
 const app = express();
 const PORT = 5000;
@@ -17,8 +15,6 @@ var conn = mysql.createConnection({
 });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
 
 app.use("/styles", express.static(path.join(__dirname, '../styles')));
 app.use("/scripts", express.static(path.join(__dirname, '../scripts')));
@@ -37,54 +33,71 @@ app.get('/', (req, res) => {
 .get('/driver-dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, "../driver_dashboard.html"));
 })
-.post('/driver-dashboard', upload.none(), (req, res) => {
-    console.log(req.body.empid);
-    res.cookie("empid", req.body.empid, { maxAge: 5000, httpOnly: true });
-    res.sendFile(path.join(__dirname, "../driver_dashboard.html"));
-})
 .get('/employee-data', (req, res) => {
-    fs.readFile(path.join(__dirname, "./data/employee.json"), (err, data) => {
-        data = JSON.parse(data);
-        res.json(data);
+    conn.connect((err) => {
+        if (err) 
+            res.sendStatus(500);
+        else {
+            conn.query("SELECT * FROM employees", (err, results) => {
+                if (err)
+                    res.sendStatus(500);
+                else {
+                    res.json(results);
+                }
+            });
+        }
     });
 })
-.put('/update-record/:index', (req, res) => {
-    fs.readFile(path.join(__dirname, "./data/employee.json"), (err, data) => {
-        data = JSON.parse(data);
-        data[req.params.index] = req.body;
-
-        fs.writeFile(path.join(__dirname, "./data/employee.json"), JSON.stringify(data, null, 4), (err) => {
-            if (err)
-                res.sendStatus(500);
-            else
-                res.sendStatus(200);
-        });
+.put('/update-record/:empid', (req, res) => {
+    conn.connect((err) => {
+        if (err)
+            res.sendStatus(500);
+        else {
+            console.log(req.body);
+            conn.query(`
+                update employees set empid=${ req.body.empid }, fname="${ req.body.fname }",
+                lname="${ req.body.lname }", gender="${ req.body.gender }", dob="${ req.body.dob }",
+                join_date="${ req.body.join_date }", salary=${ req.body.salary }, designation="${ req.body.designation }" 
+                where empid=?
+                `, [ req.params.empid ], (err, results) => {
+                if (err)
+                    res.sendStatus(500);
+                else
+                    res.sendStatus(200);
+            });
+        }
     });
 })
-.delete('/delete-record/:index', (req, res) => {
-    fs.readFile(path.join(__dirname, "./data/employee.json"), (err, data) => {
-        data = JSON.parse(data);
-        data.splice(req.params.index, 1);
-
-        fs.writeFile(path.join(__dirname, "./data/employee.json"), JSON.stringify(data, null, 4), (err) => {
-            if (err)
-                res.sendStatus(500);
-            else
-                res.sendStatus(200);
-        });
+.delete('/delete-record/:empid', (req, res) => {
+    conn.connect((err) => {
+        if (err)
+            res.sendStatus(500);
+        else {
+            conn.query("DELETE FROM employees WHERE empid=?", [ req.params.empid ], (err, results) => {
+                if (err)
+                    res.sendStatus(500);
+                else
+                    res.sendStatus(200);
+            });
+        }
     });
 })
 .post('/add-record', (req, res) => {
-    fs.readFile(path.join(__dirname, "./data/employee.json"), (err, data) => {
-        data = JSON.parse(data);
-        data.push(req.body);
-
-        fs.writeFile(path.join(__dirname, "./data/employee.json"), JSON.stringify(data, null, 4), (err) => {
-            if (err)
-                res.sendStatus(500);
-            else
-                res.sendStatus(200);
-        });
+    conn.connect((err) => {
+        if (err)
+            res.sendStatus(500);
+        else {
+            conn.query(`
+                insert into employees values (${ req.body.empid }, "${ req.body.fname }", 
+                "${ req.body.lname }", "${ req.body.gender }", "${ req.body.dob }", "${ req.body.join_date }", 
+                ${ req.body.salary }, "${ req.body.designation }")
+            `, (err, results) => {
+                if (err)
+                    res.sendStatus(500);
+                else
+                    res.sendStatus(200);
+            });
+        }
     });
 })
 .get('/driver-details/:empid', (req, res) => {

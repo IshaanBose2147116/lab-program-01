@@ -37,47 +37,76 @@ function loadJSON() {
     xhttp.send();
 }
 
-function displayJSON() {
-    document.getElementById("db-disp").innerHTML = "";
+function displayJSON(filtered) {
+    var table = document.getElementById("disp-data");
+    table.innerHTML = "";
 
-    var table = `
-        <tr>
-        <th>EmpID</th>
-        <th>Name</th>
-        <th>Gender</th>
-        <th>DoB</th>
-        <th>Join Date</th>
-        <th>Salary</th>
-        <th>Designation</th>
-        <th></th>
+    var dispVals = filtered === undefined ? JSONData : filtered;
+
+    for (let i = 0; i < dispVals.length; i++) {
+        table.innerHTML += 
+        `<tr>
+            <td>${ dispVals[i].empid }</td>
+            <td>${ dispVals[i].fname + " " + dispVals[i].lname }</td>
+            <td>${ dispVals[i].gender }</td>
+            <td>${ dispVals[i].dob.split("T")[0] }</td>
+            <td>${ dispVals[i].join_date.split("T")[0] }</td>
+            <td>${ dispVals[i].salary }</td>
+            <td>${ dispVals[i].designation }</td>
+            <td>
+                <span class="material-icons clickable-icon edit" onClick="showEditPopup(${ dispVals[i].empid })">edit</span>
+                <span class="material-icons clickable-icon delete" onClick="deleteNode(${ dispVals[i].empid })">delete</span>
+            </td>
         </tr>`;
-    
-    for (let i = 0; i < JSONData.length; i++) {
-        table += "<tr id='tr-" + JSONData[i].empID + "'><td>" + JSONData[i].empID + "</td>"
-            + "<td>" + JSONData[i].name + "</td>" 
-            + "<td>" + JSONData[i].gender + "</td>"
-            + "<td>" + JSONData[i].dob + "</td>"
-            + "<td>" + JSONData[i].joinDate + "</td>"
-            + "<td>" + JSONData[i].salary + "</td>"
-            + "<td>" + JSONData[i].designation + "</td>";
-        
-        table += `<td>
-            <span class="material-icons clickable-icon edit" onClick="showEditPopup(${i})">edit</span>
-            <span class="material-icons clickable-icon delete" onClick="deleteNode(${i})">delete</span>
-            </td>`;
-        table += "</tr>";
     }
 
-    table += "</table>";
-    document.getElementById("db-disp").innerHTML = table;
+    // search events
+    var searchInputs = document.getElementsByClassName("search");
+
+    for (let i = 0; i < searchInputs.length; i++) {
+        searchInputs[i].oninput = search;
+    }
+
+    function search() {
+        var filterEmpID = document.getElementById("search-empid").value;
+        var filterName = document.getElementById("search-name").value.toLowerCase();
+        var filterGender = document.getElementById("search-gender").value.toLowerCase();
+        var filterDoB = document.getElementById("search-dob").value;
+        var filterJoinDate = document.getElementById("search-join-date").value;
+        var filterSalary = document.getElementById("search-salary").value;
+        var filterDesignation = document.getElementById("search-designation").value.toLowerCase();
+
+        console.log("EmpID: ", filterEmpID, "Name: ", filterName, "Gender: ", filterGender, "DoB: ", filterDoB, 
+        "JoinDate: ", filterJoinDate, "Salary: ", filterSalary, "Designation: ", filterDesignation);
+        var filtered = [];
+
+        for (let i = 0; i < JSONData.length; i++) {
+            if (JSONData[i].empid.toString().includes(filterEmpID)
+                && (JSONData[i].fname.toLowerCase().includes(filterName) || JSONData[i].lname.toLowerCase().includes(filterName))
+                && JSONData[i].gender.toLowerCase().includes(filterGender) && JSONData[i].dob.includes(filterDoB)
+                && JSONData[i].join_date.includes(filterJoinDate) && JSONData[i].salary.includes(filterSalary)
+                && JSONData[i].designation.toLowerCase().includes(filterDesignation))
+                    filtered.push(JSONData[i]);
+        }
+
+        displayJSON(filtered);
+    }
 }
 
-function deleteNode(nodeNum) {
-    fetch(getURL() + `delete-record/${nodeNum}`, {
+function deleteNode(empid) {
+    fetch(getURL() + `delete-record/${empid}`, {
         method: "DELETE"
     }).then(response => {
         if (response.status === 200) {
-            JSONData.splice(nodeNum, 1);
+            var updatedData = [];
+            
+            for (let i = 0; i < JSONData.length; i++) {
+                if (JSONData[i].empid !== empid) {
+                    updatedData.push(JSONData[i]);
+                }
+            }
+
+            JSONData = updatedData;
 
             if (localStorage.deletedRecords) {
                 localStorage.deletedRecords = Number(localStorage.deletedRecords) + 1;
@@ -93,7 +122,7 @@ function deleteNode(nodeNum) {
     });
 }
 
-function showEditPopup(nodeNum) {
+function showEditPopup(empid) {
     document.getElementById("pop-up-title").innerText = "Edit Record";
     hideAllErrors();
 
@@ -101,32 +130,42 @@ function showEditPopup(nodeNum) {
         $("#pop-up").css("display", "flex");
     });
 
-    const employee = JSONData[nodeNum];
+    var employee = null;
+    let i = 0;
 
-    document.getElementById("emp-id").value = employee.empID;
-    document.getElementById("emp-name").value = employee.name;
+    for (; i < JSONData.length; i++) {
+        if (JSONData[i].empid === empid) {
+            employee = JSONData[i];
+            break;
+        }
+    }
+
+    document.getElementById("emp-id").value = employee.empid;
+    document.getElementById("emp-name").value = employee.fname + " " + employee.lname;
     document.getElementById("emp-gender").value = employee.gender;
-    document.getElementById("emp-dob").value = employee.dob;
-    document.getElementById("emp-join-date").value = employee.joinDate;
+    document.getElementById("emp-dob").value = employee.dob.split("T")[0];
+    document.getElementById("emp-join-date").value = employee.join_date.split("T")[0];
     document.getElementById("emp-salary").value = employee.salary;
     document.getElementById("emp-designation").value = employee.designation;
 
     $("#save-changes").click(() => {
         if (checkAllValidFields()) {
-            JSONData[nodeNum].empID = parseInt(document.getElementById("emp-id").value);
-            JSONData[nodeNum].name = document.getElementById("emp-name").value;
-            JSONData[nodeNum].gender = document.getElementById("emp-gender").value;
-            JSONData[nodeNum].dob = document.getElementById("emp-dob").value;
-            JSONData[nodeNum].joinDate = document.getElementById("emp-join-date").value;
-            JSONData[nodeNum].salary = document.getElementById("emp-salary").value;
-            JSONData[nodeNum].designation = document.getElementById("emp-designation").value;
-            console.log(JSON.stringify(JSONData[nodeNum]));
+            console.log("after save: ", JSONData, "i: ", i);
+            JSONData[i].empid = parseInt(document.getElementById("emp-id").value);
+            JSONData[i].fname = document.getElementById("emp-name").value.split(" ")[0];
+            JSONData[i].lname = document.getElementById("emp-name").value.split(" ")[1];
+            JSONData[i].gender = document.getElementById("emp-gender").value;
+            JSONData[i].dob = document.getElementById("emp-dob").value;
+            JSONData[i].join_date = document.getElementById("emp-join-date").value;
+            JSONData[i].salary = document.getElementById("emp-salary").value;
+            JSONData[i].designation = document.getElementById("emp-designation").value;
 
-            fetch(getURL() + `update-record/${nodeNum}`, {
+            fetch(getURL() + `update-record/${empid}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(JSONData[nodeNum])
+                body: JSON.stringify(JSONData[i])
             }).then(response => {
+                console.log(response.status);
                 if (response.status === 200) {
                     if (localStorage.editedRecords) {
                         localStorage.editedRecords = Number(localStorage.editedRecords) + 1;
@@ -167,19 +206,22 @@ function showCreatePopup() {
         if (checkAllValidFields()) {
             var newEmployee = {};
             
-            newEmployee.empID = parseInt(document.getElementById("emp-id").value);
-            newEmployee.name = document.getElementById("emp-name").value;
+            newEmployee.empid = parseInt(document.getElementById("emp-id").value);
+            newEmployee.fname = document.getElementById("emp-name").value.split(" ")[0];
+            newEmployee.lname = document.getElementById("emp-name").value.split(" ")[1];
             newEmployee.gender = document.getElementById("emp-gender").value;
             newEmployee.dob = document.getElementById("emp-dob").value;
-            newEmployee.joinDate = document.getElementById("emp-join-date").value;
+            newEmployee.join_date = document.getElementById("emp-join-date").value;
             newEmployee.salary = document.getElementById("emp-salary").value;
             newEmployee.designation = document.getElementById("emp-designation").value;
+            console.log("new employee: ", newEmployee);
 
             fetch(getURL() + "add-record", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newEmployee)
             }).then(response => {
+                console.log("status: ", response.status);
                 if (response.status === 200) {
                     JSONData.push(newEmployee);
 
@@ -314,6 +356,10 @@ $(document).ready(() => {
     document.getElementById("logout").onclick = (e) => {
         sessionStorage.clear();
     };
+
+    document.getElementById("refresh-icon").onclick = () => {
+        loadJSON();
+    }
 });
 
 function showError(id, message) {
@@ -409,7 +455,6 @@ function validateSalary() {
 }
 
 function checkNotEmpty(id) {
-    console.log("#" + id + " " + $("#" + id).val().length);
     if ($("#" + id).val().length === 0) {
         showError(id + "-error", "Field cannot be empty.");
         return false;

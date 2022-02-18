@@ -3,9 +3,9 @@ $(document).ready(() => {
         var url = window.location.href;
 
         if (sessionStorage.getItem("redirectTo") === "admin")
-            url = url.replace("/login.html", "/admin_dashboard.html");
+            url = url.replace("/login", "/admin-dashboard");
         else
-            url = url.replace("/login.html", "/driver_dashboard.html");
+            url = url.replace("/login", "/driver-dashboard");
         
         window.location.replace(url);
     }
